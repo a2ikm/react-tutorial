@@ -11,11 +11,6 @@
     <script type="text/jsx">
       var converter = new Showdown.converter();
 
-      var data = [
-        {author: "@kosugi", text: "ねちゃうの"},
-        {author: "@yocifiko", text: "ねちゃうの"}
-      ];
-
       var Comment = React.createClass({
         render: function() {
           var rawMarkup = converter.makeHtml(this.props.children.toString());
@@ -70,7 +65,7 @@
       });
 
       React.render(
-        <CommentBox data={data} />,
+        <CommentBox url="comments.json" />,
         document.getElementById('content')
       );
     </script>
