@@ -5,7 +5,11 @@ INDEX_HTML = File.expand_path("../public/index.html", __FILE__)
 COMMENTS_JSON = File.expand_path("../public/comments.json", __FILE__)
 
 def read_comments
-  File.read COMMENTS_JSON
+  if File.exist? COMMENTS_JSON
+    File.read COMMENTS_JSON
+  else
+    "[]"
+  end
 end
 
 def add_comment(author:, text:)
