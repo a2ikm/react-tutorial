@@ -43,10 +43,25 @@
       });
 
       var CommentForm = React.createClass({
+        handleSubmit: function(e) {
+          e.preventDefault();
+          var author = React.findDOMNode(this.refs.author).value.trim();
+          var text = React.findDOMNode(this.refs.text).value.trim();
+          if (!text || !author) {
+            return;
+          }
+          // TODO: send requests to the server
+          React.findDOMNode(this.refs.author).value = "";
+          React.findDOMNode(this.refs.text).value = "";
+        },
         render: function() {
           return (
-            <div className="commentForm">
-              Hello, world! I am a commentform for @kosugi.
+            <div className="commentForm" onSubmit={this.handleSubmit}>
+              <form className="commentForm">
+                <input type="text" placeholder="Your name" ref="author" />
+                <input type="text" placeholder="Say something..." ref="text" />
+                <input type="submit" value="Post" />
+              </form>
             </div>
           );
         }
